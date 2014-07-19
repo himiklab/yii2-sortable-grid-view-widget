@@ -1,7 +1,7 @@
 {
 	"name": "himiklab/yii2-sortable-grid-view-widget",
-	"description": "Sortable GriView widget for Yii2",
-	"keywords": ["yii2", "sortable" ,"gridview", "widget"],
+	"description": "Sortable GridView widget for Yii2",
+	"keywords": ["yii2", "sortable" ,"gridview", "grid", "widget"],
 	"type": "yii2-extension",
 	"license": "MIT",
 	"support": {
