@@ -76,7 +76,7 @@ class SortableGridBehavior extends Behavior
             throw new InvalidConfigException("Sortable attribute $this->sortableAttribute is invalid.");
         }
         $maxOrder = $model->find()
-            ->max($this->sortableAttribute);
+            ->max($model->tableName() . '.' . $this->sortableAttribute);
 
         $model->{$this->sortableAttribute} = $maxOrder + 1;
     }
