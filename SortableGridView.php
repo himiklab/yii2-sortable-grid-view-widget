@@ -8,6 +8,7 @@
 namespace himiklab\sortablegrid;
 
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /**
  * Sortable version of Yii2 GridView widget.
@@ -35,9 +36,10 @@ class SortableGridView extends GridView
     protected function registerWidget()
     {
         $view = $this->getView();
+        $url = Url::toRoute([ $view->context->id . '/' . $this->sortableAction]);
 
         $view->registerJs(
-            "$.fn.SortableGridView('{$this->id}', '{$this->sortableAction}');"
+            "$.fn.SortableGridView('{$this->id}', '{$url}');"
         );
         SortableGridAsset::register($view);
     }
