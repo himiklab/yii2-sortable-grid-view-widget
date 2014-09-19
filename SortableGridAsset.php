@@ -18,6 +18,6 @@ class SortableGridAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\jui\SortableAsset',
+        'yii\jui\JuiAsset',
     ];
 }
