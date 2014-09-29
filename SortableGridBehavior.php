@@ -44,15 +44,14 @@ class SortableGridBehavior extends Behavior
 
     public function gridSort($items)
     {
-        $i = 0;
         /** @var ActiveRecord $model */
         $model = $this->owner;
         if (!$model->hasAttribute($this->sortableAttribute)) {
             throw new InvalidConfigException("Sortable attribute $this->sortableAttribute is invalid.");
         }
 
-        $transaction = $model::getDb()->beginTransaction();
-        try {
+        $model::getDb()->transaction(function () use ($model, $items) {
+            $i = 0;
             foreach ($items as $item) {
                 /** @var \yii\db\ActiveRecord $row */
                 $row = $model::findOne($item);
@@ -61,11 +60,7 @@ class SortableGridBehavior extends Behavior
                 }
                 ++$i;
             }
-            $transaction->commit();
-        } catch (Exception $e) {
-            $transaction->rollBack();
-            throw $e;
-        }
+        });
     }
 
     public function beforeInsert()
