@@ -16,7 +16,7 @@
                 var serialData = $('tbody', grid).sortable('serialize', {
                     key: 'items[]',
                     attribute: 'class',
-                    expression: 'items\\[\\]_(\\d+)'
+                    expression: 'items\\[\\]_(\\w+)'
                 });
                 $.ajax({
                     'url': action,
