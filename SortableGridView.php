@@ -7,6 +7,7 @@
 
 namespace himiklab\sortablegrid;
 
+use yii\helpers\Url;
 use yii\grid\GridView;
 
 /**
@@ -23,6 +24,9 @@ class SortableGridView extends GridView
     public function init()
     {
         parent::init();
+
+        $this->sortableAction = Url::to([$this->sortableAction]);
+
         $this->processRowOptions();
     }
 
@@ -36,9 +40,7 @@ class SortableGridView extends GridView
     {
         $view = $this->getView();
 
-        $view->registerJs(
-            "$.fn.SortableGridView('{$this->id}', '{$this->sortableAction}');"
-        );
+        $view->registerJs("$.fn.SortableGridView('{$this->id}', '{$this->sortableAction}');");
         SortableGridAsset::register($view);
     }
 
