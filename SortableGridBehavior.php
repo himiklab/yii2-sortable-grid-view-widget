@@ -9,7 +9,6 @@ namespace himiklab\sortablegrid;
 
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
-use yii\base\Exception;
 use yii\base\InvalidConfigException;
 
 /**
