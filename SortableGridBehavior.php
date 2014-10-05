@@ -46,7 +46,7 @@ class SortableGridBehavior extends Behavior
         /** @var ActiveRecord $model */
         $model = $this->owner;
         if (!$model->hasAttribute($this->sortableAttribute)) {
-            throw new InvalidConfigException("Sortable attribute $this->sortableAttribute is invalid.");
+            throw new InvalidConfigException("Invalid sortable attribute `$this->sortableAttribute`");
         }
 
         $model::getDb()->transaction(function () use ($model, $items) {
@@ -67,8 +67,9 @@ class SortableGridBehavior extends Behavior
         /** @var ActiveRecord $model */
         $model = $this->owner;
         if (!$model->hasAttribute($this->sortableAttribute)) {
-            throw new InvalidConfigException("Sortable attribute $this->sortableAttribute is invalid.");
+            throw new InvalidConfigException("Invalid sortable attribute `$this->sortableAttribute`");
         }
+
         $maxOrder = $model->find()
             ->max($model->tableName() . '.' . $this->sortableAttribute);
 

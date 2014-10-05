@@ -38,13 +38,13 @@ class SortableGridAction extends Action
     public function run()
     {
         if (!isset($_POST['items']) || !is_array($_POST['items'])) {
-            throw new BadRequestHttpException();
+            throw new BadRequestHttpException('POST param `items` isn`t set');
         }
 
         /** @var \yii\db\ActiveRecord $model */
         $model = new $this->modelName;
         if (!$model->hasMethod('gridSort', true)) {
-            throw new InvalidConfigException("Not found right SortableGridBehavior in {$this->modelName}.");
+            throw new InvalidConfigException("Not found right `SortableGridBehavior` behavior in `{$this->modelName}`");
         }
 
         $model->gridSort($_POST['items']);
