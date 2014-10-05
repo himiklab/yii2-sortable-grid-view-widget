@@ -38,7 +38,7 @@ class SortableGridAction extends Action
 
     public function run()
     {
-        if ($items = Yii::$app->request->post('items')) {
+        if (!$items = Yii::$app->request->post('items')) {
             throw new BadRequestHttpException('POST param `items` isn`t set');
         }
 
