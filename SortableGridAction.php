@@ -7,6 +7,7 @@
 
 namespace himiklab\sortablegrid;
 
+use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
 use yii\web\BadRequestHttpException;
@@ -37,7 +38,7 @@ class SortableGridAction extends Action
 
     public function run()
     {
-        if (!isset($_POST['items']) || !is_array($_POST['items'])) {
+        if ($items = Yii::$app->request->post('items')) {
             throw new BadRequestHttpException('POST param `items` isn`t set');
         }
 
@@ -47,6 +48,6 @@ class SortableGridAction extends Action
             throw new InvalidConfigException("Not found right `SortableGridBehavior` behavior in `{$this->modelName}`");
         }
 
-        $model->gridSort($_POST['items']);
+        $model->gridSort($items);
     }
 }
