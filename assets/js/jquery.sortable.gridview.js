@@ -9,8 +9,6 @@
     $.fn.SortableGridView = function (id, action) {
         var grid = $('#' + id);
         $('tbody', grid).sortable({
-            forcePlaceholderSize: true,
-            forceHelperSize: true,
             items: 'tr',
             update: function () {
                 var serialData = $('tbody', grid).sortable('serialize', {
