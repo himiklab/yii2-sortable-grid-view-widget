@@ -16,12 +16,6 @@
                     attribute: 'class',
                     expression: 'items\\[\\]_(\\w+)'
                 });
-
-                var yiiCsrfParam = yii.getCsrfParam();
-                if (yiiCsrfParam !== undefined) {
-                    serialData += '&' + yiiCsrfParam + '=' + yii.getCsrfToken();
-                }
-
                 $.ajax({
                     'url': action,
                     'type': 'post',
