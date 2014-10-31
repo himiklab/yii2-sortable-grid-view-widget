@@ -24,9 +24,7 @@ class SortableGridView extends GridView
     public function init()
     {
         parent::init();
-
         $this->sortableAction = Url::to([$this->sortableAction]);
-
         $this->processRowOptions();
     }
 
@@ -39,8 +37,7 @@ class SortableGridView extends GridView
     protected function registerWidget()
     {
         $view = $this->getView();
-
-        $view->registerJs("$.fn.SortableGridView('{$this->id}', '{$this->sortableAction}');");
+        $view->registerJs("jQuery('#{$this->id}').SortableGridView('{$this->sortableAction}');");
         SortableGridAsset::register($view);
     }
 
