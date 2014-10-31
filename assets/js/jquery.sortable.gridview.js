@@ -6,12 +6,12 @@
         return ui;
     };
 
-    $.fn.SortableGridView = function (id, action) {
-        var grid = $('#' + id);
-        $('tbody', grid).sortable({
+    $.fn.SortableGridView = function (action) {
+        var grid = $('tbody', this);
+        grid.sortable({
             items: 'tr',
             update: function () {
-                var serialData = $('tbody', grid).sortable('serialize', {
+                var serialData = grid.sortable('serialize', {
                     key: 'items[]',
                     attribute: 'class',
                     expression: 'items\\[\\]_(\\w+)'
