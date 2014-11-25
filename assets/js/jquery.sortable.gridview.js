@@ -7,6 +7,7 @@
     };
 
     $.fn.SortableGridView = function (action) {
+        var widget = this;
         var grid = $('tbody', this);
         grid.sortable({
             items: 'tr',
@@ -20,6 +21,9 @@
                     'url': action,
                     'type': 'post',
                     'data': serialData,
+                    'success': function () {
+                        widget.trigger('sortableSuccess');
+                    },
                     'error': function (request, status, error) {
                         alert(status + ' ' + error);
                     }
