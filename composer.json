@@ -1,23 +1,24 @@
 {
-	"name": "himiklab/yii2-sortable-grid-view-widget",
-	"description": "Sortable GridView widget for Yii2",
-	"keywords": ["yii2", "sortable" ,"gridview", "grid", "widget"],
-	"type": "yii2-extension",
-	"license": "MIT",
-	"support": {
-		"source": "https://github.com/himiklab/yii2-sortable-grid-view-widget"
-	},
-	"authors": [
-		{
-			"name": "HimikLab",
-			"email": "himiklab@yandex.ru"
-		}
-	],
-	"require": {
-		"yiisoft/yii2": "*",
+    "name": "himiklab/yii2-sortable-grid-view-widget",
+    "description": "Sortable modification of standard Yii2 GridView widget",
+    "keywords": ["yii2", "sortable", "gridview", "grid", "widget"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/himiklab/yii2-sortable-grid-view-widget",
+        "issues": "https://github.com/himiklab/yii2-sortable-grid-view-widget/issues"
+    },
+    "authors": [
+        {
+            "name": "HimikLab",
+            "homepage": "https://github.com/himiklab"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
         "yiisoft/yii2-jui": "*"
-	},
-	"autoload": {
-		"psr-4": { "himiklab\\sortablegrid\\": "" }
-	}
+    },
+    "autoload": {
+        "psr-4": {"himiklab\\sortablegrid\\": ""}
+    }
 }

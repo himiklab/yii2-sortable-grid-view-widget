@@ -46,7 +46,7 @@ class SortableGridView extends GridView
         $rowOptions = $this->rowOptions;
         $this->rowOptions = function ($model, $key, $index, $grid) use ($rowOptions) {
             if (!empty($rowOptions)) {
-                if ($rowOptions instanceof \Closure) {
+                if (is_callable($rowOptions)) {
                     $rowOptions = call_user_func($rowOptions, $model, $key, $index, $grid);
                 }
                 if (isset($rowOptions['class'])) {
