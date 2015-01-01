@@ -9,18 +9,21 @@
     $.fn.SortableGridView = function (action) {
         var widget = this;
         var grid = $('tbody', this);
+
         grid.sortable({
             items: 'tr',
             update: function () {
-                var serialData = grid.sortable('serialize', {
-                    key: 'items[]',
-                    attribute: 'class',
-                    expression: 'items\\[\\]_(\\w+)'
+                var data = [];
+                $('tr',grid).each(function() {
+                    data.push(JSON.stringify($(this).data('key')));
                 });
+
                 $.ajax({
                     'url': action,
                     'type': 'post',
-                    'data': serialData,
+                    'data': {
+                        "items[]": data,
+                    },
                     'success': function () {
                         widget.trigger('sortableSuccess');
                     },

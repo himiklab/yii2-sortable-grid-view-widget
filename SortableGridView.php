@@ -25,7 +25,6 @@ class SortableGridView extends GridView
     {
         parent::init();
         $this->sortableAction = Url::to([$this->sortableAction]);
-        $this->processRowOptions();
     }
 
     public function run()
@@ -39,22 +38,5 @@ class SortableGridView extends GridView
         $view = $this->getView();
         $view->registerJs("jQuery('#{$this->id}').SortableGridView('{$this->sortableAction}');");
         SortableGridAsset::register($view);
-    }
-
-    protected function processRowOptions()
-    {
-        $rowOptions = $this->rowOptions;
-        $this->rowOptions = function ($model, $key, $index, $grid) use ($rowOptions) {
-            if (!empty($rowOptions)) {
-                if (is_callable($rowOptions)) {
-                    $rowOptions = call_user_func($rowOptions, $model, $key, $index, $grid);
-                }
-                if (isset($rowOptions['class'])) {
-                    return array_merge($rowOptions, ['class' => "items[]_{$model->id} {$rowOptions['class']}"]);
-                }
-                return array_merge($rowOptions, ['class' => "items[]_{$model->id}"]);
-            }
-            return ['class' => "items[]_{$model->id}"];
-        };
     }
 }

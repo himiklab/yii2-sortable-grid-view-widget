@@ -53,6 +53,9 @@ class SortableGridBehavior extends Behavior
             $i = 0;
             foreach ($items as $item) {
                 /** @var \yii\db\ActiveRecord $row */
+                $item = json_decode($item);
+                if(is_object($item))
+                    $item = get_object_vars($item);
                 $row = $model::findOne($item);
                 if ($row->{$this->sortableAttribute} != $i) {
                     $row->updateAttributes([$this->sortableAttribute => $i]);

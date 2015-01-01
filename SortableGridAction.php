@@ -41,7 +41,6 @@ class SortableGridAction extends Action
         if (!$items = Yii::$app->request->post('items')) {
             throw new BadRequestHttpException('Don\'t received POST param `items`.');
         }
-
         /** @var \yii\db\ActiveRecord $model */
         $model = new $this->modelName;
         if (!$model->hasMethod('gridSort', true)) {
