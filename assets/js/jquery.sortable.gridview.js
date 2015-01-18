@@ -10,20 +10,29 @@
         var widget = this;
         var grid = $('tbody', this);
 
+        var initialIndex = [];
+        $('tr', grid).each(function () {
+            initialIndex.push(JSON.stringify($(this).data('key')));
+        });
+
         grid.sortable({
             items: 'tr',
             update: function () {
-                var data = [];
-                $('tr',grid).each(function() {
-                    data.push(JSON.stringify($(this).data('key')));
+                var items = {};
+                var i = 0;
+                $('tr', grid).each(function () {
+                    var currentKey = JSON.stringify($(this).data('key'));
+                    if (initialIndex[i] != currentKey) {
+                        items[currentKey] = initialIndex[i];
+                        initialIndex[i] = currentKey;
+                    }
+                    ++i;
                 });
 
                 $.ajax({
                     'url': action,
                     'type': 'post',
-                    'data': {
-                        "items[]": data,
-                    },
+                    'data': {'items': JSON.stringify(items)},
                     'success': function () {
                         widget.trigger('sortableSuccess');
                     },

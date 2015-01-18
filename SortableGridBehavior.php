@@ -8,8 +8,8 @@
 namespace himiklab\sortablegrid;
 
 use yii\base\Behavior;
-use yii\db\ActiveRecord;
 use yii\base\InvalidConfigException;
+use yii\db\ActiveRecord;
 
 /**
  * Behavior for sortable Yii2 GridView widget.
@@ -49,19 +49,16 @@ class SortableGridBehavior extends Behavior
             throw new InvalidConfigException("Model does not have sortable attribute `{$this->sortableAttribute}`.");
         }
 
-        $model::getDb()->transaction(function () use ($model, $items) {
-            $i = 0;
-            foreach ($items as $item) {
-                /** @var \yii\db\ActiveRecord $row */
-                $item = json_decode($item);
-                if (is_object($item)) {
-                    $item = get_object_vars($item);
-                }
-                $row = $model::findOne($item);
-                if ($row->{$this->sortableAttribute} != $i) {
-                    $row->updateAttributes([$this->sortableAttribute => $i]);
-                }
-                ++$i;
+        $newOrder = [];
+        $models = [];
+        foreach ($items as $old => $new) {
+            $models[$new] = $model::findOne($new);
+            $newOrder[$old] = $models[$new]->{$this->sortableAttribute};
+        }
+        $model::getDb()->transaction(function () use ($models, $newOrder) {
+            foreach ($newOrder as $modelId => $orderValue) {
+                /** @var ActiveRecord[] $models */
+                $models[$modelId]->updateAttributes([$this->sortableAttribute => $orderValue]);
             }
         });
     }
@@ -75,7 +72,6 @@ class SortableGridBehavior extends Behavior
         }
 
         $maxOrder = $model->find()->max($model->tableName() . '.' . $this->sortableAttribute);
-
         $model->{$this->sortableAttribute} = $maxOrder + 1;
     }
 }

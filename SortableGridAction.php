@@ -10,6 +10,7 @@ namespace himiklab\sortablegrid;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
+use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 
 /**
@@ -43,12 +44,12 @@ class SortableGridAction extends Action
         }
         /** @var \yii\db\ActiveRecord $model */
         $model = new $this->modelName;
-        if (!$model->hasMethod('gridSort', true)) {
+        if (!$model->hasMethod('gridSort')) {
             throw new InvalidConfigException(
                 "Not found right `SortableGridBehavior` behavior in `{$this->modelName}`."
             );
         }
 
-        $model->gridSort($items);
+        $model->gridSort(Json::decode($items));
     }
 }
