@@ -19,12 +19,12 @@ use yii\grid\GridView;
 class SortableGridView extends GridView
 {
     /** @var string  Name of the action to call and sort values */
-    public $sortableAction = 'sort';
+    public $sortableAction = ['sort'];
 
     public function init()
     {
         parent::init();
-        $this->sortableAction = Url::to([$this->sortableAction]);
+        $this->sortableAction = Url::to($this->sortableAction);
     }
 
     public function run()
