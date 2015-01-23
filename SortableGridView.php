@@ -18,7 +18,7 @@ use yii\grid\GridView;
  */
 class SortableGridView extends GridView
 {
-    /** @var string  Name of the action to call and sort values */
+    /** @var string|array Sort action */
     public $sortableAction = ['sort'];
 
     public function init()
