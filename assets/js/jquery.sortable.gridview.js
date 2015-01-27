@@ -12,7 +12,7 @@
 
         var initialIndex = [];
         $('tr', grid).each(function () {
-            initialIndex.push(JSON.stringify($(this).data('key')));
+            initialIndex.push($(this).data('key'));
         });
 
         grid.sortable({
@@ -21,7 +21,7 @@
                 var items = {};
                 var i = 0;
                 $('tr', grid).each(function () {
-                    var currentKey = JSON.stringify($(this).data('key'));
+                    var currentKey = $(this).data('key');
                     if (initialIndex[i] != currentKey) {
                         items[currentKey] = initialIndex[i];
                         initialIndex[i] = currentKey;
