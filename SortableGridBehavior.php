@@ -23,6 +23,11 @@ use yii\db\ActiveRecord;
  *       'sort' => [
  *           'class' => SortableGridBehavior::className(),
  *           'sortableAttribute' => 'sortOrder'
+ *           'findMax' => function() {
+ *               return self::find()
+ *                   ->where(['slider_id' => $this->slider_id])
+ *                   ->max('sort_order');
+ *           },
  *       ],
  *   ];
  * }
@@ -30,11 +35,19 @@ use yii\db\ActiveRecord;
  *
  * @author HimikLab
  * @package himiklab\sortablegrid
+ *
+ * @property ActiveRecord $owner
  */
 class SortableGridBehavior extends Behavior
 {
-    /** @var string database field name for row sorting */
+    /**
+     * @var string database field name for row sorting
+     */
     public $sortableAttribute = 'sortOrder';
+    /**
+     * @var \Closure|array
+     */
+    public $findMax;
 
     public function events()
     {
@@ -65,13 +78,18 @@ class SortableGridBehavior extends Behavior
 
     public function beforeInsert()
     {
-        /** @var ActiveRecord $model */
-        $model = $this->owner;
-        if (!$model->hasAttribute($this->sortableAttribute)) {
+        if (!$this->owner->hasAttribute($this->sortableAttribute)) {
             throw new InvalidConfigException("Invalid sortable attribute `{$this->sortableAttribute}`.");
         }
+        $this->owner->{$this->sortableAttribute} = $this->findMax() + 1;
+    }
 
-        $maxOrder = $model->find()->max($model->tableName() . '.' . $this->sortableAttribute);
-        $model->{$this->sortableAttribute} = $maxOrder + 1;
+    protected function findMax()
+    {
+        if ($this->findMax instanceof \Closure || is_array($this->findMax)) {
+            return call_user_func($this->findMax);
+        } else {
+            return $this->owner->find()->max($this->sortableAttribute);
+        }
     }
 }

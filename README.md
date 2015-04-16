@@ -30,9 +30,14 @@ use himiklab\sortablegrid\SortableGridBehavior;
 public function behaviors()
 {
     return [
-        'sort' => [
+        [
             'class' => SortableGridBehavior::className(),
-            'sortableAttribute' => 'sortOrder'
+//            'sortableAttribute' => 'sortOrder'
+//            'findMax' => function() {
+//                return self::find()
+//                    ->where(['product_id' => $this->product_id])
+//                    ->max('sort_order');
+//            },
         ],
     ];
 }
@@ -52,6 +57,18 @@ public function actions()
         ],
     ];
 }
+```
+
+* Add GridView widget for your view :
+
+```php
+use himiklab\sortablegrid\SortableGridView as GridView;
+
+echo GridView::widget([
+    'dataProvider' => $dataProvider,
+//    'sortableAction' => ['sort'],
+    'columns' => [ ],
+]);
 ```
 
 Usage
