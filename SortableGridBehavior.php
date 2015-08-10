@@ -22,7 +22,8 @@ use yii\db\ActiveRecord;
  *    return [
  *       'sort' => [
  *           'class' => SortableGridBehavior::className(),
- *           'sortableAttribute' => 'sortOrder'
+ *           'sortableAttribute' => 'sortOrder',
+ *           'scopeAttribute' => null
  *       ],
  *   ];
  * }
@@ -35,6 +36,9 @@ class SortableGridBehavior extends Behavior
 {
     /** @var string database field name for row sorting */
     public $sortableAttribute = 'sortOrder';
+    
+    /** @var string database field name for defining scope */
+    public $scopeAttribute = null;
 
     public function events()
     {
@@ -71,7 +75,19 @@ class SortableGridBehavior extends Behavior
             throw new InvalidConfigException("Invalid sortable attribute `{$this->sortableAttribute}`.");
         }
 
-        $maxOrder = $model->find()->max($model->tableName() . '.' . $this->sortableAttribute);
+        if ($this->scopeAttribute !== null &&
+            !$model->hasAttribute($this->scopeAttribute)) {
+            throw new InvalidConfigException("Invalid scope attribute `{$this->scopeAttribute}`.");
+        }
+        
+        if ($this->scopeAttribute !== null)
+        {
+            $maxOrder = $model->find()->where([$this->scopeAttribute => $model->{$this->scopeAttribute}])->max($model->tableName() . '.' . $this->sortableAttribute);
+        }
+        else
+        {
+            $maxOrder = $model->find()->max($model->tableName() . '.' . $this->sortableAttribute);
+        }
         $model->{$this->sortableAttribute} = $maxOrder + 1;
     }
 }
