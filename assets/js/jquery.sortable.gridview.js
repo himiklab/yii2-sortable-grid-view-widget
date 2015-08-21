@@ -17,6 +17,7 @@
 
         grid.sortable({
             items: 'tr',
+            axis: 'y',
             update: function () {
                 var items = {};
                 var i = 0;
