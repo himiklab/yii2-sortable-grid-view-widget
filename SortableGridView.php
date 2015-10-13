@@ -36,7 +36,7 @@ class SortableGridView extends GridView
     protected function registerWidget()
     {
         $view = $this->getView();
-        $view->registerJs("jQuery('#{$this->id}').SortableGridView('{$this->sortableAction}');");
+        $view->registerJs("jQuery('#{$this->options['id']}').SortableGridView('{$this->sortableAction}');");
         SortableGridAsset::register($view);
     }
 }
