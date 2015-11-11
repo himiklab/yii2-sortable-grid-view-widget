@@ -18,6 +18,7 @@
         grid.sortable({
             items: 'tr',
             axis: 'y',
+            handle: $(".sort-handle", grid).size() ? ".sort-handle" : false,
             update: function () {
                 var items = {};
                 var i = 0;
