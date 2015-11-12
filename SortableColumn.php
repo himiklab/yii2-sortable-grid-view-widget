@@ -6,6 +6,8 @@ use yii\grid\Column;
 
 class SortableColumn extends Column
 {
+    public $header = "<span class='glyphicon glyphicon-menu-hamburger'></span>";
+    
     public $headerOptions = [
         'class' => 'text-center',
         'style' => 'width: 30px;'
@@ -16,19 +18,16 @@ class SortableColumn extends Column
         'style' => 'cursor: move;'
     ];
 
-    /**
-     * @inheritdoc
-     */
-    protected function renderHeaderCellContent()
-    {
-        return "<span class='glyphicon glyphicon-menu-hamburger'></span>";
-    }
 
     /**
      * @inheritdoc
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        return "<span class='glyphicon glyphicon-menu-hamburger'></span>";
+        if ($this->content !== null) {
+            return call_user_func($this->content, $model, $key, $index, $this);
+        } else {
+            return "<span class='glyphicon glyphicon-menu-hamburger'></span>";
+        }
     }
 }
