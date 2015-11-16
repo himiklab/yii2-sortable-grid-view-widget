@@ -19,6 +19,6 @@
         "yiisoft/yii2-jui": "*"
     },
     "autoload": {
-        "psr-4": {"himiklab\\sortablegrid\\": ""}
+        "psr-4": {"twixoff\\sortablegrid\\": ""}
     }
 }
