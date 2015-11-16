@@ -1,17 +1,17 @@
 {
-    "name": "himiklab/yii2-sortable-grid-view-widget",
+    "name": "twixoff/yii2-sortable-grid-view-widget",
     "description": "Sortable modification of standard Yii2 GridView widget",
     "keywords": ["yii2", "sortable", "gridview", "grid", "widget"],
     "type": "yii2-extension",
     "license": "MIT",
     "support": {
-        "source": "https://github.com/himiklab/yii2-sortable-grid-view-widget",
-        "issues": "https://github.com/himiklab/yii2-sortable-grid-view-widget/issues"
+        "source": "https://github.com/twixoff/yii2-sortable-grid-view-widget",
+        "issues": "https://github.com/twixoff/yii2-sortable-grid-view-widget/issues"
     },
     "authors": [
         {
-            "name": "HimikLab",
-            "homepage": "https://github.com/himiklab"
+            "name": "twixoff",
+            "homepage": "https://github.com/twixoff"
         }
     ],
     "require": {
