@@ -1,6 +1,6 @@
 <?php
 
-namespace himiklab\sortablegrid;
+namespace twixoff\sortablegrid;
 
 use yii\grid\Column;
 
