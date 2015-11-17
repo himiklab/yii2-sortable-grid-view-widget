@@ -24,10 +24,7 @@ use yii\web\BadRequestHttpException;
  *   ];
  * }
  * ```
- *
- * @author HimikLab
- * @package himiklab\sortablegrid
- */
+  */
 class SortableGridAction extends Action
 {
     public $modelName;
