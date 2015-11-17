@@ -16,7 +16,7 @@ class SortableGridView extends GridView
     public function init()
     {
         if($this->sortableColumn) {
-            array_unshift($this->columns, ['class' => 'himiklab\sortablegrid\SortableColumn']);
+            array_unshift($this->columns, ['class' => 'twixoff\sortablegrid\SortableColumn']);
         }
         $this->sortableAction = Url::to($this->sortableAction);
         parent::init();
