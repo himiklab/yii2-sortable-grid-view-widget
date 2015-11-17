@@ -22,9 +22,6 @@ use yii\db\ActiveRecord;
  *   ];
  * }
  * ```
- *
- * @author HimikLab
- * @package himiklab\sortablegrid
  */
 class SortableGridBehavior extends Behavior
 {
