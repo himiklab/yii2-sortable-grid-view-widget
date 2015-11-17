@@ -1,21 +1,10 @@
 <?php
-/**
- * @link https://github.com/himiklab/yii2-sortable-grid-view-widget
- * @copyright Copyright (c) 2014 HimikLab
- * @license http://opensource.org/licenses/MIT MIT
- */
 
-namespace himiklab\sortablegrid;
+namespace twixoff\sortablegrid;
 
 use yii\helpers\Url;
 use yii\grid\GridView;
 
-/**
- * Sortable version of Yii2 GridView widget.
- *
- * @author HimikLab
- * @package himiklab\sortablegrid
- */
 class SortableGridView extends GridView
 {
     /** @var string|array Sort action */
