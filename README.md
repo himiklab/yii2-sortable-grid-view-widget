@@ -32,7 +32,8 @@ public function behaviors()
     return [
         'sort' => [
             'class' => SortableGridBehavior::className(),
-            'sortableAttribute' => 'sortOrder'
+            'sortableAttribute' => 'sortOrder',
+            // 'scopeAttribute' => 'parentId'
         ],
     ];
 }
@@ -58,3 +59,8 @@ Usage
 -----
 * Use SortableGridView as standard GridView with `sortableAction` option.
 You can also subscribe to the JS event 'sortableSuccess' generated widget after a successful sorting.
+
+
+Scopes
+------
+Sometimes a table contains sort orders for multiple scopes. For example, a list of filters linked to a specific category. The scopeAttribute can be used to segment the sequence list. New items automatically get the next sort order in the segment.
