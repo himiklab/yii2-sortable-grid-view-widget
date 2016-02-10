@@ -35,18 +35,20 @@ use yii\web\BadRequestHttpException;
  */
 class SortableGridAction extends Action
 {
-    public $modelName;
-
     public function run()
     {
         if (!$items = Yii::$app->request->post('items')) {
             throw new BadRequestHttpException('Don\'t received POST param `items`.');
         }
+        if (!$class = Yii::$app->request->post('class')) {
+            throw new BadRequestHttpException('Don\'t received POST param `class`.');
+        }
+
         /** @var \yii\db\ActiveRecord $model */
-        $model = new $this->modelName;
+        $model = new $class;
         if (!$model->hasMethod('gridSort')) {
             throw new InvalidConfigException(
-                "Not found right `SortableGridBehavior` behavior in `{$this->modelName}`."
+                "Not found right `SortableGridBehavior` behavior in `{$model}`."
             );
         }
 
