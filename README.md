@@ -55,7 +55,7 @@ public function actions()
 
 Usage
 -----
-* Use SortableGridView as standard GridView with `sortableAction` and `modelClass` option.
+* Use SortableGridView as standard GridView with `sortableAction` and `modelClass` options.
 ```php
 SortableGridView::widget([
     'sortableAction' => '/site/sort',
