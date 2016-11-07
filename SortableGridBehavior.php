@@ -82,7 +82,7 @@ class SortableGridBehavior extends Behavior
             call_user_func($this->scope, $query);
         }
 
-        $maxOrder = $query->max('{{' . $model::tableName() . '}}.[[' . $this->sortableAttribute . ']]');
+        $maxOrder = $query->max('{{' . trim($model::tableName(), '{}') . '}}.[[' . $this->sortableAttribute . ']]');
         $model->{$this->sortableAttribute} = $maxOrder + 1;
     }
 }
