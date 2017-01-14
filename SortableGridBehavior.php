@@ -1,11 +1,6 @@
 <?php
-/**
- * @link https://github.com/himiklab/yii2-sortable-grid-view-widget
- * @copyright Copyright (c) 2014 HimikLab
- * @license http://opensource.org/licenses/MIT MIT
- */
 
-namespace himiklab\sortablegrid;
+namespace twixoff\sortablegrid;
 
 use yii\base\Behavior;
 use yii\base\InvalidConfigException;
@@ -30,9 +25,6 @@ use yii\db\ActiveRecord;
  *   ];
  * }
  * ```
- *
- * @author HimikLab
- * @package himiklab\sortablegrid
  */
 class SortableGridBehavior extends Behavior
 {
