@@ -20,10 +20,13 @@ class SortableGridView extends GridView
 {
     /** @var string|array Sort action */
     public $sortableAction = ['sort'];
+    public $sortableColumn = false;
 
     public function init()
     {
         parent::init();
+        if($sortableColumn)
+            array_unshift($this->columns, ['class' => 'himiklab\sortablegrid\SortableColumn']);
         $this->sortableAction = Url::to($this->sortableAction);
     }
 
