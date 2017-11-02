@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/himiklab/yii2-sortable-grid-view-widget
- * @copyright Copyright (c) 2014 HimikLab
+ * @copyright Copyright (c) 2014-2017 HimikLab
  * @license http://opensource.org/licenses/MIT MIT
  */
 
@@ -42,6 +42,9 @@ class SortableGridBehavior extends Behavior
     /** @var callable */
     public $scope;
 
+    /** @var callable */
+    public $afterGridSort;
+
     public function events()
     {
         return [ActiveRecord::EVENT_BEFORE_INSERT => 'beforeInsert'];
@@ -67,6 +70,10 @@ class SortableGridBehavior extends Behavior
                 $models[$modelId]->updateAttributes([$this->sortableAttribute => $orderValue]);
             }
         });
+
+        if (is_callable($this->afterGridSort)) {
+            call_user_func($this->afterGridSort, $model);
+        }
     }
 
     public function beforeInsert()
