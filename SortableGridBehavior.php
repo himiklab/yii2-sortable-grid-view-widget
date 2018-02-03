@@ -62,7 +62,7 @@ class SortableGridBehavior extends Behavior
         $models = [];
         foreach ($items as $old => $new) {
             $models[$new] = $model::findOne($new);
-            $newOrder[$old] = $models[$new]->{$this->sortableAttribute};
+            $newOrder[$old] = $models[$new]->{$this->sortableAttribute} ? $models[$new]->{$this->sortableAttribute} : $new;
         }
         $model::getDb()->transaction(function () use ($models, $newOrder) {
             foreach ($newOrder as $modelId => $orderValue) {
