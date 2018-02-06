@@ -6,7 +6,7 @@
         return ui;
     };
 
-    $.fn.SortableGridView = function (action) {
+    $.fn.SortableGridView = function (action, modelClass) {
         var widget = this;
         var grid = $('tbody', this);
 
@@ -33,7 +33,10 @@
                 $.ajax({
                     'url': action,
                     'type': 'post',
-                    'data': {'items': JSON.stringify(items)},
+                    'data': {
+                        'items': JSON.stringify(items),
+                        'class': modelClass
+                    },
                     'success': function () {
                         widget.trigger('sortableSuccess');
                     },

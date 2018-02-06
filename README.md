@@ -47,8 +47,7 @@ public function actions()
 {
     return [
         'sort' => [
-            'class' => SortableGridAction::className(),
-            'modelName' => Model::className(),
+            'class' => SortableGridAction::className()
         ],
     ];
 }
@@ -56,5 +55,21 @@ public function actions()
 
 Usage
 -----
-* Use SortableGridView as standard GridView with `sortableAction` option.
+* Use SortableGridView as standard GridView with `sortableAction` and `modelClass` options.
+```php
+SortableGridView::widget([
+    'sortableAction' => '/site/sort',
+    'modelClass' => '\app\models\Company',
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+
+        'id',
+        'title',
+
+        ['class' => 'yii\grid\ActionColumn'],
+    ],
+]);
+```
 You can also subscribe to the JS event 'sortableSuccess' generated widget after a successful sorting.

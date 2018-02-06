@@ -20,6 +20,8 @@ class SortableGridView extends GridView
 {
     /** @var string|array Sort action */
     public $sortableAction = ['sort'];
+    /** @var string Model class name */
+    public $modelClass;
 
     public function init()
     {
@@ -36,7 +38,9 @@ class SortableGridView extends GridView
     protected function registerWidget()
     {
         $view = $this->getView();
-        $view->registerJs("jQuery('#{$this->options['id']}').SortableGridView('{$this->sortableAction}');");
+        $class = str_replace('\\', '\\\\', $this->modelClass);
+        $view->registerJs("jQuery('#{$this->options['id']}').SortableGridView('{$this->sortableAction}',
+                                                                              '{$class}');");
         SortableGridAsset::register($view);
     }
 }
