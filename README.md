@@ -2,6 +2,8 @@ Sortable GridView Widget for Yii2
 ========================
 Sortable modification of standard Yii2 GridView widget.
 
+[![Packagist](https://img.shields.io/packagist/dt/himiklab/yii2-sortable-grid-view-widget.svg)]() [![Packagist](https://img.shields.io/packagist/v/himiklab/yii2-sortable-grid-view-widget.svg)]()  [![license](https://img.shields.io/badge/License-MIT-yellow.svg)]()
+
 Installation
 ------------
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
