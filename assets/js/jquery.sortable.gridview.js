@@ -20,14 +20,12 @@
             axis: 'y',
             update: function () {
                 var items = {};
-                var i = 0;
-                $('tr', grid).each(function () {
+                $('tr', grid).each(function (index, value) {
                     var currentKey = $(this).data('key');
-                    if (initialIndex[i] != currentKey) {
-                        items[currentKey] = initialIndex[i];
-                        initialIndex[i] = currentKey;
+                    if (initialIndex[index] != currentKey) {
+                        items[currentKey] = initialIndex[index];
+                        initialIndex[index] = currentKey;
                     }
-                    ++i;
                 });
 
                 $.ajax({
