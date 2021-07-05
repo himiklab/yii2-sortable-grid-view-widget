@@ -90,7 +90,7 @@ class SortableGridBehavior extends Behavior
         }
 
         /* Override model alias if defined in the model's class */
-        $query->from([$model::tableName() => $model::tableName()]);
+        $query->from([$model::tableName()]);
 
         $maxOrder = $query->max('{{' . trim($model::tableName(), '{}') . '}}.[[' . $this->sortableAttribute . ']]');
         $model->{$this->sortableAttribute} = $maxOrder + 1;
